@@ -1,25 +1,6 @@
+import { move, multiply, rotate } from "./utils/matrix-operations";
+
 figma.showUI(__html__);
-
-function multiply(a, b): Transform {
-  return [
-    [ a[0][0] * b[0][0] + a[0][1] * b[1][0], a[0][0] * b[0][1] + a[0][1] * b[1][1], a[0][0] * b[0][2] + a[0][1] * b[1][2] + a[0][2] ],
-    [ a[1][0] * b[0][0] + a[1][1] * b[1][0], a[1][0] * b[0][1] + a[1][1] * b[1][1] + 0, a[1][0] * b[0][2] + a[1][1] * b[1][2] + a[1][2] ]
-  ]
-}
-
-function move(x, y): Transform {
-  return [
-    [1, 0, x],
-    [0, 1, y]
-  ]
-}
-
-function rotate(theta): Transform {
-  return [
-    [Math.cos(theta), -Math.sin(theta), 0],
-    [Math.sin(theta), Math.cos(theta), 0],
-  ]
-}
 
 figma.ui.onmessage = (msg) => {
   if (msg.type === "create-background") {
