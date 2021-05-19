@@ -42,6 +42,7 @@
    try {
       await build({
          entryPoints: ["src/code.ts"],
+         watch: dev,
          sourcemap: dev,
          minify: !dev,
          bundle: true,
