@@ -1,34 +1,95 @@
-// This plugin will open a window to prompt the user to enter a number, and
-// it will then create that many rectangles on the screen.
-
-// This file holds the main code for the plugins. It has access to the *document*.
-// You can access browser APIs in the <script> tag inside "ui.html" which has a
-// full browser environment (see documentation).
-
-// This shows the HTML page in "ui.html".
 figma.showUI(__html__);
 
-// Calls to "parent.postMessage" from within the HTML page will trigger this
-// callback. The callback will be passed the "pluginMessage" property of the
-// posted message.
+function multiply(a, b): Transform {
+  return [
+    [ a[0][0] * b[0][0] + a[0][1] * b[1][0], a[0][0] * b[0][1] + a[0][1] * b[1][1], a[0][0] * b[0][2] + a[0][1] * b[1][2] + a[0][2] ],
+    [ a[1][0] * b[0][0] + a[1][1] * b[1][0], a[1][0] * b[0][1] + a[1][1] * b[1][1] + 0, a[1][0] * b[0][2] + a[1][1] * b[1][2] + a[1][2] ]
+  ]
+}
+
+function move(x, y): Transform {
+  return [
+    [1, 0, x],
+    [0, 1, y]
+  ]
+}
+
+function rotate(theta): Transform {
+  return [
+    [Math.cos(theta), -Math.sin(theta), 0],
+    [Math.sin(theta), Math.cos(theta), 0],
+  ]
+}
+
 figma.ui.onmessage = (msg) => {
-  // One way of distinguishing between different types of messages sent from
-  // your HTML page is to use an object with a "type" property like this.
-  if (msg.type === "create-rectangles") {
+  if (msg.type === "create-background") {
     const nodes: SceneNode[] = [];
-    console.log("TEST");
-    for (let i = 0; i < msg.count; i++) {
-      const rect = figma.createRectangle();
-      rect.x = i * 150;
-      rect.fills = [{ type: "SOLID", color: { r: 1, g: 0.5, b: 0 } }];
-      figma.currentPage.appendChild(rect);
-      nodes.push(rect);
+
+    const rect = figma.createRectangle();
+
+    const red = {
+        a : 1,
+        r: 1,
+        g: 0,
+        b: 0,
     }
+
+    const green = {
+      a : 1,
+      r: 0,
+      g: 1,
+      b: 0,
+    }
+
+    var direction = msg.angle * Math.PI / 180;
+
+    var stripeSize = 10;
+
+    var scale = 0.5;
+
+    var rectSize = 200;
+    var test = rectSize / scale;
+    var stripeCount = test / stripeSize;
+
+    const stops = []
+
+    rect.resize(parseFloat(msg.width), parseFloat(msg.height));
+
+    for (let i = 0; i < stripeCount; i++) {
+      const position = i / stripeCount;
+
+      stops.push({
+        color: i % 2 == 0 ? red : green,
+        position,
+      })
+
+      stops.push({
+        color: i % 2 == 0 ? green : red,
+        position
+      })
+    }
+
+    rect.fills = [
+      {
+        type: "GRADIENT_LINEAR",
+        gradientTransform:
+          multiply(
+            multiply(
+              multiply(
+                move(0.5, 0.5),
+                rotate(direction)
+              ),
+              move(-0.5, -0.5)
+            ),
+            [[0.5, 0, 0], [0, 0.5, 0]],
+          ),
+        gradientStops: stops
+      }
+    ]
+
     figma.currentPage.selection = nodes;
     figma.viewport.scrollAndZoomIntoView(nodes);
   }
 
-  // Make sure to close the plugin when you're done. Otherwise the plugin will
-  // keep running, which shows the cancel button at the bottom of the screen.
   figma.closePlugin();
 };
