@@ -3,6 +3,29 @@
 
    let dev = process.env.NODE_ENV === "development"
 
+   let copyPlugin = {
+      name: "copy",
+      setup(build) {
+         let fs = require("fs");
+
+         fs.access("out", (error) => {
+            if (error) {
+               fs.mkdir("out", (directoryError) => {
+                  if (directoryError) {
+                     throw new Error(directoryError.message);
+                  } else {
+                     fs.copyFile("src/ui.html", "out/ui.html", (copyError) => {
+                        if (copyError) {
+                           throw new Error(copyError.message);
+                        }
+                     });
+                  }
+               });
+            }
+         });
+      }
+   }
+
    let cleanPlugin = {
       name: "clean",
       setup(build) {
@@ -23,7 +46,7 @@
          minify: !dev,
          bundle: true,
          outfile: "out/code.js",
-         plugins: [cleanPlugin]
+         plugins: [cleanPlugin, copyPlugin]
       });
    } catch (error) {
       console.error(error)

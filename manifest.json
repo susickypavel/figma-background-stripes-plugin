@@ -3,5 +3,5 @@
   "id": "976173007149517845",
   "api": "1.0.0",
   "main": "out/code.js",
-  "ui": "ui.html"
+  "ui": "out/ui.html"
 }
