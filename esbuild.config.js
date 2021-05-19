@@ -1,4 +1,6 @@
 (async () => {
+   const outputDirectory = "out";
+
    let { build } = require("esbuild")
 
    let dev = process.env.NODE_ENV === "development"
@@ -8,13 +10,13 @@
       setup(build) {
          let fs = require("fs");
 
-         fs.access("out", (error) => {
+         fs.access(outputDirectory, (error) => {
             if (error) {
-               fs.mkdir("out", (directoryError) => {
+               fs.mkdir(outputDirectory, (directoryError) => {
                   if (directoryError) {
                      throw new Error(directoryError.message);
                   } else {
-                     fs.copyFile("src/ui.html", "out/ui.html", (copyError) => {
+                     fs.copyFile("src/ui.html", outputDirectory + "/ui.html", (copyError) => {
                         if (copyError) {
                            throw new Error(copyError.message);
                         }
@@ -32,7 +34,7 @@
          let fs = require("fs");
 
          try {
-            fs.rmdirSync("out", { recursive: true });
+            fs.rmdirSync(outputDirectory, { recursive: true });
          } catch (error) {
             console.error(error);
          }
@@ -46,7 +48,7 @@
          sourcemap: dev,
          minify: !dev,
          bundle: true,
-         outfile: "out/code.js",
+         outfile: outputDirectory + "/code.js",
          plugins: [cleanPlugin, copyPlugin]
       });
    } catch (error) {
