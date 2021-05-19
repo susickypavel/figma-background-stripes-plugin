@@ -2,6 +2,6 @@
   "name": "background-with-stripes",
   "id": "976173007149517845",
   "api": "1.0.0",
-  "main": "code.js",
+  "main": "out/code.js",
   "ui": "ui.html"
 }
