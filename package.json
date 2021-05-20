@@ -10,7 +10,7 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "color-parse": "^1.4.2"
+    "color-rgba": "^2.2.3"
   },
   "devDependencies": {
     "@figma/plugin-typings": "^1.23.0",

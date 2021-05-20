@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "moduleResolution": "Node",
     "typeRoots": ["./node_modules/@types", "./node_modules/@figma"]
   }
 }

@@ -1,4 +1,5 @@
 import { move, multiply, rotate } from "./utils/matrix-operations";
+import parse from "color-rgba";
 
 figma.showUI(__html__);
 
@@ -6,20 +7,23 @@ figma.ui.onmessage = (msg) => {
   if (msg.type === "create-background") {
     const nodes: SceneNode[] = [];
 
+    let [r1, g1, b1, a1] = parse(msg.stripeOneColor);
+    let [r2, g2, b2, a2] = parse(msg.stripeTwoColor);
+
     const rect = figma.createRectangle();
 
-    const red = {
-      a: 1,
-      r: 1,
-      g: 0,
-      b: 0,
+    const stripeOneColor = {
+      a: a1,
+      r: r1 / 255,
+      g: g1 / 255,
+      b: b1 / 255,
     };
 
-    const green = {
-      a: 1,
-      r: 0,
-      g: 1,
-      b: 0,
+    const stripeTwoColor = {
+      a: a2,
+      r: r2 / 255,
+      g: g2 / 255,
+      b: b2 / 255,
     };
 
     var direction = (msg.angle * Math.PI) / 180;
@@ -40,12 +44,12 @@ figma.ui.onmessage = (msg) => {
       const position = i / stripeCount;
 
       stops.push({
-        color: i % 2 == 0 ? red : green,
+        color: i % 2 == 0 ? stripeOneColor : stripeTwoColor,
         position,
       });
 
       stops.push({
-        color: i % 2 == 0 ? green : red,
+        color: i % 2 == 0 ? stripeTwoColor : stripeOneColor,
         position,
       });
     }
