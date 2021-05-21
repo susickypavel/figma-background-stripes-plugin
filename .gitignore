@@ -2,3 +2,4 @@ node_modules
 src/code.js
 yarn-error.log
 out
+.idea
