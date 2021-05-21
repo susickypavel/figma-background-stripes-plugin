@@ -1,4 +1,4 @@
-export function multiply(a, b): Transform {
+export function multiply(a: Transform, b: Transform): Transform {
   return [
     [
       a[0][0] * b[0][0] + a[0][1] * b[1][0],
@@ -13,7 +13,7 @@ export function multiply(a, b): Transform {
   ];
 }
 
-export function move(x, y): Transform {
+export function move(x: number, y: number): Transform {
   return [
     [1, 0, x],
     [0, 1, y],
@@ -25,7 +25,7 @@ export function move(x, y): Transform {
  *
  * @param theta - Angle in radians
  */
-export function rotate(theta): Transform {
+export function rotate(theta: number): Transform {
   return [
     [Math.cos(theta), -Math.sin(theta), 0],
     [Math.sin(theta), Math.cos(theta), 0],

@@ -1,5 +1,5 @@
+import { parseColor } from "./utils/color-parsing";
 import { move, multiply, rotate } from "./utils/matrix-operations";
-import parse from "color-rgba";
 
 figma.showUI(__html__, {
   height: 480,
@@ -10,34 +10,20 @@ figma.ui.onmessage = (msg) => {
   if (msg.type === "create-background") {
     const nodes: SceneNode[] = [];
 
-    let [r1, g1, b1, a1] = parse(msg.stripeOneColor);
-    let [r2, g2, b2, a2] = parse(msg.stripeTwoColor);
-
     const rect = figma.createRectangle();
 
-    const stripeOneColor = {
-      a: a1,
-      r: r1 / 255,
-      g: g1 / 255,
-      b: b1 / 255,
-    };
-
-    const stripeTwoColor = {
-      a: a2,
-      r: r2 / 255,
-      g: g2 / 255,
-      b: b2 / 255,
-    };
+    const stripeOneColor = parseColor(msg.stripeOneColor);
+    const stripeTwoColor = parseColor(msg.stripeTwoColor);
 
     var direction = (msg.angle * Math.PI) / 180;
 
     var stripeSize = 10;
 
-    var scale = 0.5;
+    const SCALE = 0.5;
 
     var rectSize = 200;
-    var test = rectSize / scale;
-    var stripeCount = test / stripeSize;
+    var actualSize = rectSize / SCALE;
+    var stripeCount = actualSize / stripeSize;
 
     const stops = [];
 
@@ -66,8 +52,8 @@ figma.ui.onmessage = (msg) => {
             move(-0.5, -0.5)
           ),
           [
-            [0.5, 0, 0],
-            [0, 0.5, 0],
+            [SCALE, 0, 0],
+            [0, SCALE, 0],
           ]
         ),
         gradientStops: stops,
