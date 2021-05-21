@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const Label = styled.div`
-  font-weight: bold;
-
   & > span {
     display: block;
+    font-weight: bold;
   }
 
   & div {

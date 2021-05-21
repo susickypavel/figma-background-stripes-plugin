@@ -15,3 +15,9 @@ export const Label = styled.label`
     width: 100%;
   }
 `;
+
+export const Description = styled.p`
+  font-size: 11px;
+  color: gray;
+  margin: 4px 0;
+`;

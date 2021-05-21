@@ -63,6 +63,7 @@ export const Form: FunctionComponent = () => {
       <FormRow>
         <FormInput
           label="Rect height"
+          description="Height of frame's visible area"
           props={{
             name: "rectHeight",
             type: "number",
@@ -72,6 +73,7 @@ export const Form: FunctionComponent = () => {
         />
         <FormInput
           label="Rect width"
+          description="Width of frame's visible area"
           props={{
             name: "rectWidth",
             type: "number",
@@ -82,6 +84,7 @@ export const Form: FunctionComponent = () => {
       </FormRow>
       <FormInput
         label="Stripe width"
+        description="Width of the stripes (applies to all stripes)"
         props={{
           name: "stripeWidth",
           type: "number",
@@ -93,6 +96,7 @@ export const Form: FunctionComponent = () => {
         min={0}
         max={360}
         label="Angle"
+        description="Angle under which are all stripes rendered"
         name="angle"
         value={state.angle}
         onChange={onValueChanged}
