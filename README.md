@@ -6,3 +6,4 @@ This plugin creates a Figma frame with a rectangular that has stripes generated 
 
 - [ ] Multiple-color stripes
 - [ ] Multiple-width stripes
+- [ ] change background of selected frame
