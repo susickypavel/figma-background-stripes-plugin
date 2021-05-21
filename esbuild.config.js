@@ -47,7 +47,7 @@
   try {
     let result = await build({
       logLevel: "debug",
-      entryPoints: ["src/code.ts", "src/ui.ts"],
+      entryPoints: ["src/code.ts", "src/ui.tsx"],
       watch: dev,
       sourcemap: dev,
       minify: !dev,
@@ -74,7 +74,10 @@
 
         await writeFile(
           outputDirectory + "/ui.html",
-          `${minifiedHtml}<script>${file.text}</script>`
+          `${minifiedHtml}<script>${file.text.replace(
+            "</script>",
+            "</ + script>"
+          )}</script>`
         );
       } else {
         await writeFile(file.path, file.text);
