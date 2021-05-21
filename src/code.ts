@@ -1,6 +1,6 @@
 import { createBackground } from "./commands/create-background";
 
-import type { State } from "./components/form.reducer";
+import type { State } from "./components/form/form.reducer";
 
 type MessageData = {
   type: "create-background";

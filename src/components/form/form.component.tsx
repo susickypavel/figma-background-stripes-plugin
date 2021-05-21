@@ -1,11 +1,11 @@
 import React, { useReducer } from "react";
 
 import { initialState, reducer } from "./form.reducer";
-import { FormInput } from "./form-input.component";
+import { FormInput } from "./form-input/form-input.component";
+import { FormRangeInput } from "./form-range/form-range.component";
 import { FormButton, FormControls, FormRow, StyledForm } from "./form.styles";
 
 import type { FunctionComponent } from "react";
-import { FormRangeInput } from "./form-range.component";
 
 export const Form: FunctionComponent = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
