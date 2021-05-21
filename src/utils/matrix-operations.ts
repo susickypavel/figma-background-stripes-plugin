@@ -1,3 +1,8 @@
+/**
+ * @param a - 3x2 matrix
+ * @param b - 3x2 matrix
+ * @returns
+ */
 export function multiply(a: Transform, b: Transform): Transform {
   return [
     [

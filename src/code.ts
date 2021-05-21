@@ -12,22 +12,24 @@ figma.ui.onmessage = (msg) => {
 
     const rect = figma.createRectangle();
 
+    const rectHeight = parseFloat(msg.height);
+    const rectWidth = parseFloat(msg.width);
+
+    rect.resize(rectHeight, rectWidth);
+
     const stripeOneColor = parseColor(msg.stripeOneColor);
     const stripeTwoColor = parseColor(msg.stripeTwoColor);
 
-    var direction = (msg.angle * Math.PI) / 180;
-
-    var stripeSize = parseFloat(msg.stripeWidth);
+    const direction = (msg.angle * Math.PI) / 180;
+    const stripeSize = parseFloat(msg.stripeWidth);
 
     const SCALE = 0.5;
 
-    var rectSize = 200;
-    var actualSize = rectSize / SCALE;
-    var stripeCount = actualSize / stripeSize;
+    const rectSize = 200;
+    const actualSize = rectSize / SCALE;
+    const stripeCount = actualSize / stripeSize;
 
     const stops = [];
-
-    rect.resize(parseFloat(msg.width), parseFloat(msg.height));
 
     for (let i = 0; i < stripeCount; i++) {
       const position = i / stripeCount;
