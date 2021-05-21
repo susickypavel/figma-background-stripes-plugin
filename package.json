@@ -1,14 +1,12 @@
 {
   "name": "background-with-stripes",
   "version": "1.0.0",
-  "description": "Your Figma plugin",
-  "main": "src/code.js",
+  "description": "Figma plugin for creating backgrounds with stripes",
+  "author": "Pavel Sušický",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node esbuild.config.js",
     "build": "cross-env NODE_ENV=production node esbuild.config.js"
   },
-  "author": "",
-  "license": "",
   "dependencies": {
     "color-rgba": "^2.2.3"
   },
