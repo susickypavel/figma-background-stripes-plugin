@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Label } from "./form-input.styles";
 
 import type { FunctionComponent } from "react";

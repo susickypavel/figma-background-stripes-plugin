@@ -5,6 +5,7 @@ import { FormInput } from "./form-input.component";
 import { FormButton, FormControls, FormRow, StyledForm } from "./form.styles";
 
 import type { FunctionComponent } from "react";
+import { FormRangeInput } from "./form-range.component";
 
 export const Form: FunctionComponent = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -80,15 +81,6 @@ export const Form: FunctionComponent = () => {
         />
       </FormRow>
       <FormInput
-        label="Angle"
-        props={{
-          name: "angle",
-          type: "number",
-          value: state.angle,
-          onChange: onValueChanged,
-        }}
-      />
-      <FormInput
         label="Stripe width"
         props={{
           name: "stripeWidth",
@@ -96,6 +88,14 @@ export const Form: FunctionComponent = () => {
           value: state.stripeWidth,
           onChange: onValueChanged,
         }}
+      />
+      <FormRangeInput
+        min={0}
+        max={360}
+        label="Angle"
+        name="angle"
+        value={state.angle}
+        onChange={onValueChanged}
       />
       <FormControls>
         <FormButton variant="#6EE7B7" type="button" onClick={onCancel}>
