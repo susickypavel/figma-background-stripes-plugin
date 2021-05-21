@@ -9,9 +9,10 @@ export const FormInput: FunctionComponent<FormInputProps> = ({
   label,
   description,
   props,
+  centered,
 }) => {
   return (
-    <Label>
+    <Label centered={centered}>
       <span>{label}</span>
       <input {...props} />
       {description && <Description>{description}</Description>}

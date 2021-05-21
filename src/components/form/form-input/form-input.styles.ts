@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Label = styled.label`
+export const Label = styled.label<{ centered: boolean }>`
+  ${(props) => (props.centered ? "text-align: center;" : "")}
+
   & > span {
     font-weight: bold;
     display: block;
