@@ -1,9 +1,9 @@
 import { parseColor } from "../utils/color-parsing";
 import { move, multiply, rotate } from "../utils/matrix-operations";
 
-import type { CreateBackgroundData } from "./create-background.d";
+import type { State } from "../components/form.reducer";
 
-export function createBackground(data: CreateBackgroundData): void {
+export function createBackground(data: State): void {
   const BACKGROUND_MULTIPLIER = 1.5;
 
   const seeThroughPlane = figma.createFrame();
@@ -11,8 +11,8 @@ export function createBackground(data: CreateBackgroundData): void {
 
   const nodes: SceneNode[] = [seeThroughPlane, background];
 
-  const rectHeight = parseFloat(data.height);
-  const rectWidth = parseFloat(data.width);
+  const rectHeight = parseFloat(data.rectHeight);
+  const rectWidth = parseFloat(data.rectWidth);
 
   const backgroundSize =
     Math.max(rectHeight, rectWidth) * BACKGROUND_MULTIPLIER;
@@ -25,8 +25,8 @@ export function createBackground(data: CreateBackgroundData): void {
   seeThroughPlane.resize(rectWidth, rectHeight);
   seeThroughPlane.fills = [];
 
-  const stripeOneColor = parseColor(data.stripeOneColor);
-  const stripeTwoColor = parseColor(data.stripeTwoColor);
+  const stripeOneColor = parseColor(data.firstStripeColor);
+  const stripeTwoColor = parseColor(data.secondStripeColor);
 
   const direction = (parseFloat(data.angle) * Math.PI) / 180;
 

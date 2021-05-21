@@ -1,10 +1,10 @@
 import { createBackground } from "./commands/create-background";
 
-import type { CreateBackgroundData } from "./commands/create-background.d";
+import type { State } from "./components/form.reducer";
 
 type MessageData = {
   type: "create-background";
-} & CreateBackgroundData;
+} & State;
 
 figma.showUI(__html__, {
   height: 480,
