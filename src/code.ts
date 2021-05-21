@@ -8,19 +8,22 @@ figma.showUI(__html__, {
 
 figma.ui.onmessage = (msg) => {
   if (msg.type === "create-background") {
+    const BACKGROUND_MULTIPLIER = 2;
+
     const nodes: SceneNode[] = [];
 
-    const frame = figma.createFrame();
-    const rect = figma.createRectangle();
+    const seeThroughPlane = figma.createFrame();
+    const background = figma.createRectangle();
 
     const rectHeight = parseFloat(msg.height);
     const rectWidth = parseFloat(msg.width);
 
-    const largestSide = Math.max(rectHeight, rectWidth);
+    const backgroundSize =
+      Math.max(rectHeight, rectWidth) * BACKGROUND_MULTIPLIER;
 
-    rect.resize(largestSide * 2, largestSide * 2);
-    frame.resize(rectWidth, rectHeight);
-    frame.fills = [];
+    background.resize(backgroundSize, backgroundSize);
+    seeThroughPlane.resize(rectWidth, rectHeight);
+    seeThroughPlane.fills = [];
 
     const stripeOneColor = parseColor(msg.stripeOneColor);
     const stripeTwoColor = parseColor(msg.stripeTwoColor);
@@ -30,12 +33,12 @@ figma.ui.onmessage = (msg) => {
     const stripeSize = parseFloat(msg.stripeWidth);
 
     const diagonal = Math.sqrt(
-      Math.pow(largestSide * 2, 2) + Math.pow(largestSide * 2, 2)
+      Math.pow(backgroundSize, 2) + Math.pow(backgroundSize, 2)
     );
 
-    const scale = (largestSide * 2) / diagonal;
+    const scale = backgroundSize / diagonal;
 
-    const stripeCount = (diagonal * 2) / stripeSize;
+    const stripeCount = diagonal / stripeSize;
 
     const stops = [];
 
@@ -53,7 +56,7 @@ figma.ui.onmessage = (msg) => {
       });
     }
 
-    rect.fills = [
+    background.fills = [
       {
         type: "GRADIENT_LINEAR",
         gradientTransform: multiply(
@@ -73,7 +76,7 @@ figma.ui.onmessage = (msg) => {
       },
     ];
 
-    frame.appendChild(rect);
+    seeThroughPlane.appendChild(background);
 
     figma.currentPage.selection = nodes;
     figma.viewport.scrollAndZoomIntoView(nodes);
