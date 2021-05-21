@@ -43,6 +43,7 @@ export const Form: FunctionComponent = () => {
       <FormRow>
         <FormInput
           label="First stripe color"
+          centered={true}
           props={{
             name: "firstStripeColor",
             type: "color",
@@ -52,6 +53,7 @@ export const Form: FunctionComponent = () => {
         />
         <FormInput
           label="Second stripe color"
+          centered={true}
           props={{
             name: "secondStripeColor",
             type: "color",
