@@ -26,11 +26,14 @@ export const FormControls = styled.div`
   gap: 16px;
 `;
 
-export const FormButton = styled.button<{ variant: string }>`
+export const FormButton = styled.button<{ variant: "primary" | "secondary" }>`
   flex-grow: 1;
   padding: 16px 0;
   font-weight: bold;
   border-radius: 4px;
   border: 2px solid black;
-  background-color: ${(props) => props.variant};
+  cursor: pointer;
+  background-color: ${(props) =>
+    props.variant == "primary" ? "#000000" : "#ffffff"};
+  color: ${(props) => (props.variant == "primary" ? "#ffffff" : "#000000")};
 `;
