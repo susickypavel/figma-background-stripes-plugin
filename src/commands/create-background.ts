@@ -1,7 +1,7 @@
 import { parseColor } from "../utils/color-parsing";
 import { move, multiply, rotate } from "../utils/matrix-operations";
 
-import type { State } from "../components/form.reducer";
+import type { State } from "../components/form/form.reducer";
 
 export function createBackground(data: State): void {
   const BACKGROUND_MULTIPLIER = 1.5;
