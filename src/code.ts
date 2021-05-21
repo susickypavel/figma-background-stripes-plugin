@@ -8,7 +8,7 @@ figma.showUI(__html__, {
 
 figma.ui.onmessage = (msg) => {
   if (msg.type === "create-background") {
-    const BACKGROUND_MULTIPLIER = 2;
+    const BACKGROUND_MULTIPLIER = 1.5;
 
     const nodes: SceneNode[] = [];
 
@@ -20,6 +20,10 @@ figma.ui.onmessage = (msg) => {
 
     const backgroundSize =
       Math.max(rectHeight, rectWidth) * BACKGROUND_MULTIPLIER;
+
+    background.x = -(backgroundSize / 2) + rectWidth / 2;
+    background.y = -(backgroundSize / 2) + rectHeight / 2;
+    background.locked = true;
 
     background.resize(backgroundSize, backgroundSize);
     seeThroughPlane.resize(rectWidth, rectHeight);
