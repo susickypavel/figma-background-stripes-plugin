@@ -10,24 +10,32 @@ figma.ui.onmessage = (msg) => {
   if (msg.type === "create-background") {
     const nodes: SceneNode[] = [];
 
+    const frame = figma.createFrame();
     const rect = figma.createRectangle();
 
     const rectHeight = parseFloat(msg.height);
     const rectWidth = parseFloat(msg.width);
 
-    rect.resize(rectWidth, rectHeight);
+    const largestSide = Math.max(rectHeight, rectWidth);
+
+    rect.resize(largestSide * 2, largestSide * 2);
+    frame.resize(rectWidth, rectHeight);
+    frame.fills = [];
 
     const stripeOneColor = parseColor(msg.stripeOneColor);
     const stripeTwoColor = parseColor(msg.stripeTwoColor);
 
-    const direction = (msg.angle * Math.PI) / 180;
+    const direction = (parseFloat(msg.angle) * Math.PI) / 180;
+
     const stripeSize = parseFloat(msg.stripeWidth);
 
-    const SCALE = 0.5;
+    const diagonal = Math.sqrt(
+      Math.pow(largestSide * 2, 2) + Math.pow(largestSide * 2, 2)
+    );
 
-    const rectSize = 200;
-    const actualSize = rectSize / SCALE;
-    const stripeCount = actualSize / stripeSize;
+    const scale = (largestSide * 2) / diagonal;
+
+    const stripeCount = (diagonal * 2) / stripeSize;
 
     const stops = [];
 
@@ -50,17 +58,22 @@ figma.ui.onmessage = (msg) => {
         type: "GRADIENT_LINEAR",
         gradientTransform: multiply(
           multiply(
-            multiply(move(0.5, 0.5), rotate(direction)),
-            move(-0.5, -0.5)
+            multiply(
+              [
+                [scale, 0, 0],
+                [0, scale, 0],
+              ],
+              move(scale, scale)
+            ),
+            rotate(direction)
           ),
-          [
-            [SCALE, 0, 0],
-            [0, SCALE, 0],
-          ]
+          move(-0.5, -0.5)
         ),
         gradientStops: stops,
       },
     ];
+
+    frame.appendChild(rect);
 
     figma.currentPage.selection = nodes;
     figma.viewport.scrollAndZoomIntoView(nodes);
