@@ -46,6 +46,7 @@
 
   try {
     let result = await build({
+      logLevel: "debug",
       entryPoints: ["src/code.ts", "src/ui.ts"],
       watch: dev,
       sourcemap: dev,
