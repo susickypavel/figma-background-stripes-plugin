@@ -15,7 +15,7 @@ figma.ui.onmessage = (msg) => {
     const rectHeight = parseFloat(msg.height);
     const rectWidth = parseFloat(msg.width);
 
-    rect.resize(rectHeight, rectWidth);
+    rect.resize(rectWidth, rectHeight);
 
     const stripeOneColor = parseColor(msg.stripeOneColor);
     const stripeTwoColor = parseColor(msg.stripeTwoColor);
