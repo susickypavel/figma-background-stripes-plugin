@@ -17,7 +17,7 @@ figma.ui.onmessage = (msg) => {
 
     var direction = (msg.angle * Math.PI) / 180;
 
-    var stripeSize = 10;
+    var stripeSize = parseFloat(msg.stripeWidth);
 
     const SCALE = 0.5;
 
