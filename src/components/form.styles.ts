@@ -12,6 +12,7 @@ export const StyledForm = styled.form`
 
 export const FormRow = styled.div`
   display: flex;
+  gap: 16px;
   flex-flow: row nowrap;
 
   & > * {
