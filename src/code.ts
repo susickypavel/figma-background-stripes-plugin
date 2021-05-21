@@ -1,7 +1,10 @@
 import { move, multiply, rotate } from "./utils/matrix-operations";
 import parse from "color-rgba";
 
-figma.showUI(__html__);
+figma.showUI(__html__, {
+  height: 480,
+  width: 640,
+});
 
 figma.ui.onmessage = (msg) => {
   if (msg.type === "create-background") {

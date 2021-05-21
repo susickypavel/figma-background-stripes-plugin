@@ -1,4 +1,7 @@
 // @ts-nocheck
+
+import styles from "figma-plugin-ds/dist/figma-plugin-ds.css";
+
 document.getElementById("create").onclick = () => {
   const stripeOneColor = document.getElementById("stripeOneColor").value;
   const stripeTwoColor = document.getElementById("stripeTwoColor").value;

@@ -1,25 +1,71 @@
-<h2>Rectangle Creator</h2>
-<div style="display: flex; flex-flow: column">
-  <label>
-    <span>angle</span>
+<style>
+  * {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .form {
+    display: flex;
+    flex-flow: column wrap;
+  }
+
+  .form-row {
+    display: flex;
+    flex-flow: column wrap;
+    margin-bottom: 16px;
+  }
+
+  .form-row span {
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+
+  .form-row input[type="number"] {
+    padding: 8px;
+  }
+
+  .color-picker {
+    flex-flow: row wrap;
+  }
+
+  .form-controls {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .form-controls > button {
+    flex-grow: 1;
+    font-weight: bold;
+  }
+
+  #create {
+    background-color: #10b981;
+  }
+
+  #cancel {
+    background-color: #ef4444;
+  }
+</style>
+<div class="form">
+  <h1>Stripes</h1>
+  <label class="form-row">
+    <span>Angle</span>
     <input type="number" id="angle" value="45" />
   </label>
-  <label>
-    <span>Rect Height</span>
+  <label class="form-row">
+    <span>Rect height</span>
     <input type="number" id="rectHeight" value="300" />
   </label>
-  <label>
-    <span>Rect Width</span>
+  <label class="form-row">
+    <span>Rect width</span>
     <input type="number" id="rectWidth" value="300" />
   </label>
-  <label>
-    <span>Stripe one color</span>
-    <input type="text" id="stripeOneColor" />
+  <label class="form-row color-picker">
+    <span>Stripe colors</span>
+    <input type="color" id="stripeOneColor" />
+    <input type="color" id="stripeTwoColor" />
   </label>
-  <label>
-    <span>Strip two color</span>
-    <input type="text" id="stripeTwoColor" />
-  </label>
+  <div class="form-controls">
+    <button id="cancel">Cancel</button>
+    <button id="create">Create</button>
+  </div>
 </div>
-<button id="create">Create</button>
-<button id="cancel">Cancel</button>
