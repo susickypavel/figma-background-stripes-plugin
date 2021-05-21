@@ -55,8 +55,8 @@ export function reducer(state: State, action: Action): State {
 
 export const initialState: State = {
   angle: "45",
-  firstStripeColor: "#FF0000",
-  secondStripeColor: "#00FF00",
+  firstStripeColor: "#EF4444",
+  secondStripeColor: "#10B981",
   rectHeight: "400",
   rectWidth: "400",
   stripeWidth: "15",

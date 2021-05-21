@@ -104,13 +104,13 @@ export const Form: FunctionComponent = () => {
         onChange={onValueChanged}
       />
       <FormControls>
-        <FormButton variant="#6EE7B7" type="button" onClick={onCancel}>
+        <FormButton variant="#EF4444" type="button" onClick={onCancel}>
           CANCEL
         </FormButton>
-        <FormButton variant="#93C5FD" type="button" onClick={onReset}>
+        <FormButton variant="#3B82F6" type="button" onClick={onReset}>
           RESET
         </FormButton>
-        <FormButton variant="#FCA5A5" type="submit">
+        <FormButton variant="#10B981" type="submit">
           CREATE
         </FormButton>
       </FormControls>

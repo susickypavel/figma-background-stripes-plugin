@@ -16,6 +16,12 @@ export const Label = styled.label<{ centered: boolean }>`
 
     width: 100%;
   }
+
+  & > input[type="color"] {
+    background-color: #111827;
+    border-radius: 4px;
+    border: 1px solid #000000;
+  }
 `;
 
 export const Description = styled.p`
