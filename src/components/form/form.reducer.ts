@@ -44,9 +44,13 @@ export function reducer(state: State, action: Action): State {
         { pluginMessage: { type: "create-background", ...state } },
         "*"
       );
+
+      return state;
     }
     case "CANCEL": {
       parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
+
+      return state;
     }
     default:
       return state;
